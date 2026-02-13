@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will You Be My Valentine? 💞</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Quicksand:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-start: #fff5f9;
+        --bg-end: #ffe9f0;
+        --pink-soft: #fff0f5;
+        --pink-glow: #ffdeed;
+        --pink-mid: #ff8dc1;
+        --pink-deep: #ff4d94;
+        --pink-dark: #d81b60;
+        --text-main: #3f1f2f;
+        --text-light: #6b4a5a;
+        --glass: rgba(255, 255, 255, 0.92);
+        --glow: rgba(255, 105, 180, 0.25);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Quicksand", system-ui, sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--bg-start) 0%,
+          var(--bg-end) 100%
+        );
+        color: var(--text-main);
+        min-height: 100dvh;
+        overflow-x: hidden;
+      }
+
+      .hearts-bg {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .heart {
+        position: absolute;
+        font-size: clamp(1.3rem, 4.5vw, 2.4rem);
+        color: rgba(233, 30, 99, 0.65);
+        animation: floatHeart linear infinite;
+        will-change: transform, opacity;
+        filter: drop-shadow(0 2px 8px var(--glow));
+      }
+
+      @keyframes floatHeart {
+        0% {
+          transform: translateY(110dvh) scale(0.35) rotate(-10deg);
+          opacity: 0;
+        }
+        12% {
+          opacity: 0.92;
+        }
+        88% {
+          opacity: 0.92;
+        }
+        100% {
+          transform: translateY(-15dvh) scale(1.05) rotate(10deg);
+          opacity: 0;
+        }
+      }
+
+      #proposal {
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem 1rem;
+        position: relative;
+        z-index: 10;
+      }
+
+      .proposal-card {
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        border-radius: 2.2rem;
+        padding: clamp(1.8rem, 5vw, 2.6rem);
+        width: min(460px, 92vw);
+        text-align: center;
+        box-shadow:
+          0 20px 60px var(--glow),
+          inset 0 0 40px rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 182, 193, 0.55);
+        animation: cardFadeIn 1.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      @keyframes cardFadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.92) translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .big-emoji {
+        font-size: clamp(5rem, 18vw, 8.5rem);
+        margin-bottom: 1rem;
+        line-height: 1;
+        filter: drop-shadow(0 4px 12px var(--glow));
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.1rem, 7vw, 3.3rem);
+        color: var(--pink-dark);
+        margin-bottom: 1.5rem;
+        line-height: 1.12;
+        letter-spacing: -0.01em;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1.8rem;
+        flex-wrap: wrap;
+        position: relative;
+        min-height: 60px;
+      }
+
+      .btn {
+        font-size: 1.18rem;
+        font-weight: 550;
+        padding: 0.9rem 2.3rem;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        user-select: none;
+      }
+
+      #yesBtn {
+        background: linear-gradient(90deg, var(--pink-mid), var(--pink-dark));
+        color: white;
+        box-shadow: 0 10px 30px var(--glow);
+        position: relative;
+        z-index: 2;
+      }
+
+      #yesBtn:hover {
+        transform: translateY(-3px) scale(1.06);
+        box-shadow: 0 16px 45px rgba(216, 27, 96, 0.45);
+      }
+
+      #yesBtn:active {
+        transform: translateY(-1px) scale(1.03);
+      }
+
+      #noBtn {
+        background: rgba(255, 255, 255, 0.82);
+        color: var(--text-light);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 182, 193, 0.55);
+        position: relative;
+        z-index: 1;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      #noBtn:hover {
+        background: rgba(255, 240, 245, 0.9);
+      }
+
+      #noBtn.small {
+        transform: scale(0.84);
+        padding: 0.75rem 2rem;
+        font-size: 1.05rem;
+      }
+      #noBtn.tiny {
+        transform: scale(0.66);
+        padding: 0.6rem 1.6rem;
+        font-size: 0.92rem;
+      }
+      #noBtn.micro {
+        transform: scale(0.48);
+        padding: 0.45rem 1.2rem;
+        font-size: 0.8rem;
+      }
+      #noBtn.hidden {
+        transform: scale(0.01);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .tease-msg {
+        position: absolute;
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(216, 27, 96, 0.94);
+        color: white;
+        padding: 0.7rem 1.6rem;
+        border-radius: 50px;
+        font-size: 1.02rem;
+        font-weight: 500;
+        white-space: nowrap;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
+        opacity: 0;
+        transition: all 0.4s ease;
+        pointer-events: none;
+        z-index: 20;
+      }
+
+      .tease-msg.show {
+        opacity: 1;
+        top: -70px;
+      }
+
+      #danceOverlay {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 240, 245, 0.96),
+          rgba(255, 182, 193, 0.88)
+        );
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+      }
+
+      #danceOverlay.show {
+        display: flex;
+        opacity: 1;
+      }
+
+      .dance-girl {
+        width: 260px;
+        max-width: 65vw;
+        height: auto;
+        border-radius: 50%;
+        box-shadow: 0 12px 40px rgba(216, 27, 96, 0.3);
+        animation: bounceDance 2s infinite ease-in-out;
+      }
+
+      @keyframes bounceDance {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-35px) rotate(6deg);
+        }
+      }
+
+      .dance-text {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        color: var(--pink-dark);
+        margin-top: 1.8rem;
+        text-shadow: 0 5px 25px var(--glow);
+        animation: pulseText 2.2s infinite;
+      }
+
+      @keyframes pulseText {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.07);
+        }
+      }
+
+      #memory {
+        display: none;
+        padding: clamp(2rem, 5vw, 4rem) 1rem 8rem;
+        opacity: 0;
+        transition: opacity 1.2s ease 0.6s;
+      }
+
+      #memory.show {
+        opacity: 1;
+      }
+
+      .header {
+        text-align: center;
+        padding: 2.5rem 1.2rem 1.8rem;
+      }
+
+      .header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.8rem, 8.5vw, 4.6rem);
+        color: var(--pink-dark);
+        margin-bottom: 0.4rem;
+        text-shadow: 0 4px 20px var(--glow);
+      }
+
+      .love-note {
+        max-width: 680px;
+        margin: 0 auto 3.5rem;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 5vw, 2.3rem);
+        color: var(--pink-deep);
+        text-align: center;
+        line-height: 1.48;
+        /* font-style: italic; */
+        padding: 1.5rem 2rem;
+        background: rgba(255, 240, 245, 0.68);
+        border-radius: 1.6rem;
+        border: 2px dashed var(--pink-mid);
+        box-shadow: 0 10px 30px var(--glow);
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: 2.1rem;
+        color: var(--pink-deep);
+        text-align: center;
+        margin: 3.5rem 0 2rem;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--pink-mid),
+          transparent
+        );
+        border-radius: 3px;
+      }
+
+      .slider-container {
+        position: relative;
+        max-width: 920px;
+        margin: 0 auto 2.5rem;
+      }
+
+      .gallery-wrapper {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        scroll-behavior: smooth;
+        padding: 1.2rem 0 3.5rem;
+      }
+
+      .gallery-wrapper::-webkit-scrollbar {
+        display: none;
+      }
+
+      .gallery-track {
+        display: flex;
+        gap: 1.3rem;
+        padding: 0 calc(50vw - min(230px, 41vw));
+      }
+
+      .memory-item {
+        flex: 0 0 82vw;
+        max-width: 460px;
+        scroll-snap-align: center;
+        background: white;
+        border-radius: 1.8rem;
+        overflow: hidden;
+        box-shadow: 0 16px 44px rgba(216, 27, 96, 0.16);
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+
+      .memory-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0 20px 60px rgba(216, 27, 96, 0.26);
+      }
+
+      .memory-item img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        display: block;
+      }
+
+      .slider-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        color: var(--pink-deep);
+        border: none;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        font-size: 1.8rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        transition: all 0.3s ease;
+        z-index: 10;
+      }
+
+      .slider-arrow.prev {
+        left: 12px;
+      }
+      .slider-arrow.next {
+        right: 12px;
+      }
+
+      .slider-arrow:hover {
+        background: white;
+        transform: translateY(-50%) scale(1.14);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      }
+
+      .slider-arrow:active {
+        transform: translateY(-50%) scale(1.05);
+      }
+
+      .slider-arrow:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        transform: translateY(-50%) scale(0.9);
+      }
+
+      .slider-dots {
+        position: absolute;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 0.8rem;
+        max-width: 90vw;
+        overflow-x: auto;
+        padding: 0.5rem;
+        scrollbar-width: none;
+      }
+
+      .slider-dots::-webkit-scrollbar {
+        display: none;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        background: rgba(255, 105, 180, 0.4);
+        border-radius: 50%;
+        flex-shrink: 0;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .dot:hover {
+        background: rgba(255, 105, 180, 0.7);
+        transform: scale(1.2);
+      }
+
+      .dot.active {
+        background: var(--pink-dark);
+        transform: scale(1.45);
+      }
+
+      .reasons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+        margin: 2.5rem auto;
+        max-width: 920px;
+        padding: 0 1rem;
+      }
+
+      .reason {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(14px);
+        border-radius: 1.5rem;
+        padding: 1.8rem 1.3rem;
+        text-align: center;
+        border: 1px solid rgba(255, 182, 193, 0.45);
+        transition: all 0.4s ease;
+        opacity: 0;
+        transform: translateY(40px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .reason.show {
+        opacity: 1;
+        transform: none;
+      }
+
+      .reason:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+      }
+
+      .reason .emoji {
+        font-size: 2.9rem;
+        margin-bottom: 0.9rem;
+      }
+      .reason h3 {
+        color: var(--pink-deep);
+        margin-bottom: 0.5rem;
+      }
+
+      #sealedLetter {
+        max-width: 700px;
+        margin: 4rem auto 6rem;
+        text-align: center;
+        padding: 0 1rem;
+      }
+
+      .letter-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 6vw, 3.2rem);
+        color: var(--pink-dark);
+        margin-bottom: 2rem;
+      }
+
+      .envelope-container {
+        position: relative;
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+        perspective: 1000px;
+      }
+
+      .envelope {
+        position: relative;
+        width: 100%;
+        height: 340px;
+        background: linear-gradient(135deg, #fff5f9, #ffe9f0);
+        border-radius: 12px;
+        box-shadow: 0 20px 50px rgba(216, 27, 96, 0.25);
+        overflow: visible;
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+
+      .envelope.opened {
+        opacity: 0;
+        transform: scale(0.8);
+        pointer-events: none;
+      }
+
+      .envelope-flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 40%;
+        background: linear-gradient(135deg, #ffe9f0, #ffdee9);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%, 0 100%);
+        transform-origin: top center;
+        z-index: 3;
+        box-shadow: 0 10px 30px rgba(216, 27, 96, 0.2);
+      }
+
+      .seal {
+        position: absolute;
+        top: 32%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 110px;
+        height: 110px;
+        background: radial-gradient(
+          circle at 30% 30%,
+          #ffdeed,
+          #ff8dc1 40%,
+          #d81b60
+        );
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3.8rem;
+        color: white;
+        box-shadow: 0 8px 25px rgba(216, 27, 96, 0.5);
+        border: 8px solid #fff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 4;
+      }
+
+      .seal:hover {
+        transform: translate(-50%, -50%) scale(1.12);
+        box-shadow: 0 12px 35px rgba(216, 27, 96, 0.6);
+      }
+
+      .seal:active {
+        transform: translate(-50%, -50%) scale(1.05);
+      }
+
+      .letter-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        padding: 1rem;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .letter-modal.show {
+        display: flex;
+        opacity: 1;
+      }
+
+      .letter-card {
+        background: white;
+        border-radius: 2rem;
+        max-width: 700px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 25px 70px rgba(216, 27, 96, 0.4);
+        position: relative;
+        transform: scale(0.7) translateY(50px);
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .letter-modal.show .letter-card {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+
+      .letter-card-header {
+        background: linear-gradient(135deg, var(--pink-soft), var(--pink-glow));
+        padding: 2.5rem 2rem 2rem;
+        border-radius: 2rem 2rem 0 0;
+        text-align: center;
+        position: relative;
+      }
+
+      .letter-card-header .heart-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        animation: heartBeat 1.5s ease-in-out infinite;
+      }
+
+      @keyframes heartBeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        10%,
+        30% {
+          transform: scale(1.1);
+        }
+        20%,
+        40% {
+          transform: scale(1);
+        }
+      }
+
+      .open-btn {
+        background: linear-gradient(90deg, var(--pink-mid), var(--pink-dark));
+        color: white;
+        box-shadow: 0 10px 30px var(--glow);
+        margin-top: 1.5rem;
+      }
+
+      .open-btn:hover {
+        transform: translateY(-3px) scale(1.06);
+        box-shadow: 0 16px 45px rgba(216, 27, 96, 0.45);
+      }
+
+      .open-btn:active {
+        transform: translateY(-1px) scale(1.03);
+      }
+
+      .close-letter {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        color: var(--pink-dark);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .close-letter:hover {
+        background: white;
+        transform: scale(1.1) rotate(90deg);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      }
+
+      .letter-card-body {
+        padding: 2.5rem 2.5rem 3rem;
+      }
+
+      .letter-card h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.8rem, 5vw, 2.6rem);
+        color: var(--pink-dark);
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .letter-card p {
+        font-size: clamp(1.1rem, 3vw, 1.35rem);
+        line-height: 1.75;
+        margin-bottom: 1.4rem;
+        color: var(--text-main);
+      }
+
+      .letter-card .signature {
+        text-align: right;
+        margin-top: 2.5rem;
+        font-size: 1.5rem;
+        color: var(--pink-deep);
+        font-family: "Playfair Display", serif;
+      }
+
+      .letter-card::-webkit-scrollbar {
+        width: 8px;
+      }
+      .letter-card::-webkit-scrollbar-track {
+        background: rgba(255, 182, 193, 0.1);
+        border-radius: 10px;
+      }
+      .letter-card::-webkit-scrollbar-thumb {
+        background: var(--pink-mid);
+        border-radius: 10px;
+      }
+      .letter-card::-webkit-scrollbar-thumb:hover {
+        background: var(--pink-dark);
+      }
+
+      .final-message {
+        text-align: center;
+        margin: 5rem 1.5rem 6rem;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 5vw, 2.1rem);
+        color: var(--pink-deep);
+        line-height: 1.5;
+        padding: 2rem;
+        background: rgba(255, 245, 250, 0.65);
+        border-radius: 1.6rem;
+        max-width: 780px;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 10px 30px var(--glow);
+      }
+
+      @media (max-width: 600px) {
+        .memory-item {
+          flex: 0 0 88vw;
+          max-width: none;
+        }
+        .gallery-track {
+          gap: 1rem;
+        }
+        .slider-arrow {
+          width: 46px;
+          height: 46px;
+          font-size: 1.5rem;
+        }
+        .seal {
+          width: 90px;
+          height: 90px;
+          font-size: 3rem;
+          border-width: 6px;
+        }
+        .envelope {
+          height: 300px;
+        }
+      }
+
+      @media (hover: none) {
+        .gallery-wrapper {
+          scroll-padding: 0 calc(50vw - 41vw);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hearts-bg" id="hearts"></div>
+
+    <!-- Proposal -->
+    <div id="proposal">
+      <div class="proposal-card">
+        <div class="big-emoji">💞</div>
+        <h1>Will you be my<br />Valentine, Mr. Dipesh Maharjan? 🌸</h1>
+
+        <div class="buttons">
+          <button class="btn" id="yesBtn">Yes!! 🥰</button>
+          <button class="btn" id="noBtn">No 😡</button>
+          <div class="tease-msg" id="teaseMsg"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dancing Celebration Overlay -->
+    <div id="danceOverlay">
+      <img
+        class="dance-girl"
+        src="images/spin.gif"
+        alt="Happy dancing party animation"
+      />
+      <div class="dance-text">Yayyy! You said YES! 💃❤️</div>
+    </div>
+
+    <!-- Memory / Gallery Page -->
+    <div id="memory">
+      <div class="header">
+        <h1>💗 You said YES! 💗</h1>
+      </div>
+
+      <div class="love-note">
+        I love you today, tomorrow <br />and forever. 💕
+      </div>
+
+      <h2 class="section-title">Our Special Moments</h2>
+
+      <div class="slider-container">
+        <div class="gallery-wrapper" id="gallery">
+          <div class="gallery-track">
+            <div class="memory-item">
+              <img loading="lazy" src="images/1.jpg" alt="Memory 1" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/2.jpg" alt="Memory 2" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/3.jpg" alt="Memory 3" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/4.jpg" alt="Memory 4" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/5.jpg" alt="Memory 5" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/6.jpg" alt="Memory 6" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/7.jpg" alt="Memory 7" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/8.jpg" alt="Memory 8" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/9.jpg" alt="Memory 9" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/10.jpg" alt="Memory 10" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/11.jpg" alt="Memory 11" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/12.jpg" alt="Memory 12" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/13.jpg" alt="Memory 13" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/14.jpg" alt="Memory 14" />
+            </div>
+            <div class="memory-item">
+              <img loading="lazy" src="images/15.jpg" alt="Memory 15" />
+            </div>
+          </div>
+        </div>
+
+        <button class="slider-arrow prev" id="prev" aria-label="Previous photo">
+          ←
+        </button>
+        <button class="slider-arrow next" id="next" aria-label="Next photo">
+          →
+        </button>
+
+        <div class="slider-dots" id="dots"></div>
+      </div>
+
+      <!-- Sealed Letter -->
+      <div id="sealedLetter">
+        <h2 class="letter-title">Why I adore you ... 💌</h2>
+
+        <div class="envelope-container">
+          <div class="envelope" id="envelope">
+            <div class="envelope-flap"></div>
+            <div class="seal" id="seal">💗</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Letter Modal Card -->
+      <div class="letter-modal" id="letterModal">
+        <div class="letter-card">
+          <div class="letter-card-header">
+            <button
+              class="close-letter"
+              id="closeLetter"
+              aria-label="Close letter"
+            >
+              ✕
+            </button>
+            <div class="heart-icon">💗</div>
+          </div>
+          <div class="letter-card-body">
+            <p>
+              "100 Reasons Why I Love You" padhna ja asti ko. Link ta xaina hola
+              hmph !!
+            </p>
+
+            <button class="btn open-btn" onclick="openLink()">
+              Open 100 Reasons 💌
+            </button>
+          </div>
+
+          <script>
+            function openLink() {
+              window.open("https://birthday-app-aw9z.vercel.app/", "_blank");
+            }
+          </script>
+        </div>
+      </div>
+
+      <div class="final-message">
+        See you on our date 💕<br />
+        Can't wait to make more memories with you...
+      </div>
+    </div>
+
+    <script>
+      // Hearts background animation
+      function spawnHeart() {
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.textContent = ["💗", "💞", "💖", "🌸", "✨"][
+          Math.floor(Math.random() * 5)
+        ];
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.animationDuration = Math.random() * 20 + 16 + "s";
+        h.style.animationDelay = Math.random() * 5 + "s";
+        document.getElementById("hearts").appendChild(h);
+        setTimeout(() => h.remove(), 38000);
+      }
+      setInterval(spawnHeart, 750);
+
+      // No button tease
+      const noBtn = document.getElementById("noBtn");
+      const yesBtn = document.getElementById("yesBtn");
+      const msgEl = document.getElementById("teaseMsg");
+
+      const msgs = [
+        "Oii fuccheyy No thichisss ??!! 😠",
+        "Lahh myaaa ferii aile ho?? 😤",
+        "Kutai khais aba taile !!! Yess thich 🤬",
+        "You sure? I'll cry... 😢",
+        "Try Yes instead, it's cuter 😉",
+        "Nope, try again~ 💖",
+        "You're breaking my heart... 💔",
+        "Come on, you know you want to 🥰",
+        "Last chance before I hide it 😈",
+        "Yes is waiting right here →",
+      ];
+
+      let attempts = 0;
+
+      function tease() {
+        attempts++;
+        msgEl.textContent = msgs[(attempts - 1) % msgs.length];
+        msgEl.classList.add("show");
+        setTimeout(() => msgEl.classList.remove("show"), 2200);
+
+        noBtn.classList.remove("small", "tiny", "micro", "hidden");
+
+        if (attempts === 1) noBtn.classList.add("small");
+        else if (attempts === 2) noBtn.classList.add("tiny");
+        else if (attempts === 3) noBtn.classList.add("micro");
+        else if (attempts >= 4) noBtn.classList.add("hidden");
+
+        const scale = Math.min(1 + attempts * 0.24, 2.2);
+        yesBtn.style.transform = `scale(${scale})`;
+        yesBtn.style.padding = `${0.9 + attempts * 0.22}rem ${2.3 + attempts * 0.55}rem`;
+        yesBtn.style.fontSize = `${1.18 + attempts * 0.16}rem`;
+      }
+
+      noBtn.addEventListener("onclick", tease);
+      noBtn.addEventListener(
+        "touchstart",
+        (e) => {
+          e.preventDefault();
+          tease();
+        },
+        { passive: false },
+      );
+      noBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        tease();
+      });
+
+      // Yes → celebration → memory page (no auto-scroll to letter anymore)
+      yesBtn.onclick = () => {
+        document.getElementById("proposal").style.display = "none";
+
+        const overlay = document.getElementById("danceOverlay");
+        overlay.style.display = "flex";
+        setTimeout(() => overlay.classList.add("show"), 50);
+
+        for (let i = 0; i < 50; i++) {
+          setTimeout(spawnHeart, i * 50);
+        }
+
+        setTimeout(() => {
+          overlay.classList.remove("show");
+          setTimeout(() => {
+            overlay.style.display = "none";
+
+            const memoryPage = document.getElementById("memory");
+            memoryPage.style.display = "block";
+
+            // Give a tiny delay so the display:block is applied
+            setTimeout(() => {
+              memoryPage.classList.add("show");
+
+              // Scroll to top of memory section smoothly
+              memoryPage.scrollIntoView({
+                behavior: "smooth",
+                block: "start", // aligns top of #memory with top of viewport
+              });
+            }, 120);
+          }, 800);
+        }, 4200);
+      };
+
+      // Letter modal
+      let letterOpened = false;
+      const letterModal = document.getElementById("letterModal");
+      const closeLetter = document.getElementById("closeLetter");
+      const envelope = document.getElementById("envelope");
+
+      document.getElementById("seal").onclick = () => {
+        if (!letterOpened) {
+          envelope.classList.add("opened");
+          setTimeout(() => {
+            letterModal.style.display = "flex";
+            setTimeout(() => letterModal.classList.add("show"), 50);
+          }, 300);
+          letterOpened = true;
+        }
+      };
+
+      closeLetter.onclick = () => {
+        letterModal.classList.remove("show");
+        setTimeout(() => {
+          letterModal.style.display = "none";
+          envelope.classList.remove("opened");
+          letterOpened = false;
+        }, 400);
+      };
+
+      letterModal.onclick = (e) => {
+        if (e.target === letterModal) closeLetter.click();
+      };
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && letterModal.classList.contains("show")) {
+          closeLetter.click();
+        }
+      });
+
+      // Gallery slider
+      const gallery = document.getElementById("gallery");
+      const prev = document.getElementById("prev");
+      const next = document.getElementById("next");
+      const dotsBox = document.getElementById("dots");
+      const slides = gallery.querySelectorAll(".memory-item");
+      const total = slides.length;
+
+      slides.forEach((_, i) => {
+        const d = document.createElement("div");
+        d.className = "dot";
+        d.setAttribute("aria-label", `Go to photo ${i + 1}`);
+        d.onclick = () => {
+          slides[i].scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+        };
+        dotsBox.appendChild(d);
+      });
+
+      const allDots = dotsBox.querySelectorAll(".dot");
+      allDots[0]?.classList.add("active");
+
+      function updateDots() {
+        let closest = 0,
+          minDist = Infinity;
+        slides.forEach((s, i) => {
+          const r = s.getBoundingClientRect();
+          const centerDist = Math.abs(
+            r.left + r.width / 2 - window.innerWidth / 2,
+          );
+          if (centerDist < minDist) {
+            minDist = centerDist;
+            closest = i;
+          }
+        });
+
+        allDots.forEach((d, i) => d.classList.toggle("active", i === closest));
+        prev.disabled = closest === 0;
+        next.disabled = closest === total - 1;
+
+        if (allDots[closest]) {
+          allDots[closest].scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+        }
+      }
+
+      gallery.addEventListener("scroll", updateDots, { passive: true });
+      window.addEventListener("resize", updateDots);
+
+      prev.onclick = () => {
+        let cur = [...allDots].findIndex((d) => d.classList.contains("active"));
+        if (cur > 0)
+          slides[cur - 1].scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+      };
+
+      next.onclick = () => {
+        let cur = [...allDots].findIndex((d) => d.classList.contains("active"));
+        if (cur < total - 1)
+          slides[cur + 1].scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+      };
+
+      document.querySelectorAll(".reason").forEach((el, i) => {
+        setTimeout(() => el.classList.add("show"), i * 130 + 300);
+      });
+
+      updateDots();
+
+      // Touch swipe
+      let touchStartX = 0,
+        touchEndX = 0;
+      gallery.addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        },
+        { passive: true },
+      );
+      gallery.addEventListener(
+        "touchend",
+        (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          const diff = touchStartX - touchEndX;
+          if (Math.abs(diff) > 50) {
+            if (diff > 0) next.click();
+            else prev.click();
+          }
+        },
+        { passive: true },
+      );
+    </script>
+
+    <audio id="bgMusic" src="images/about-you.mp3" loop></audio>
+
+    <script>
+      // Background music
+      const bgMusic = document.getElementById("bgMusic");
+
+      function playMusic() {
+        bgMusic.play().catch(() => {});
+      }
+
+      // Play music on first interaction
+      document.addEventListener(
+        "click",
+        function () {
+          playMusic();
+        },
+        { once: true },
+      );
+    </script>
+  </body>
+</html>
